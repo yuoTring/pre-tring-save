@@ -3,21 +3,21 @@ package com.versec.versecko.data.datasource.local
 import com.versec.versecko.data.entity.UserEntity
 import com.versec.versecko.data.room.AppDatabase
 
-class UserLocalDataSourceImpl : UserLocalDataSource {
+class UserLocalDataSourceImpl(
 
-    lateinit private var appDatabase: AppDatabase
+    private val appDatabase: AppDatabase
 
-    override suspend fun getAllUser(): List<UserEntity> {
+) : UserLocalDataSource {
 
-        appDatabase = AppDatabase.getInstance()
+
+    override suspend fun getAllUser() : MutableList<UserEntity> {
+
 
         return appDatabase.userEntityDao().getAllUser()
     }
 
     override suspend fun insertUser(userEntity: UserEntity) {
-        appDatabase = AppDatabase.getInstance()
 
         appDatabase.userEntityDao().insertUser(userEntity)
-        TODO("Not yet implemented")
     }
 }

@@ -14,7 +14,7 @@ class UserRepositoryImpl (
 ) :UserRepository
 {
 
-    override suspend fun getAllUser(): List<UserModel>
+    override suspend fun getAllUser() : MutableList<UserModel>
     {
         val userList : List<UserEntity> = localDataSource.getAllUser()
         var temp = mutableListOf<UserModel>()

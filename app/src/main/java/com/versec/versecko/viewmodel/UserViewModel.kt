@@ -1,30 +1,28 @@
 package com.versec.versecko.viewmodel
 
-import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import com.versec.domain.model.UserModel
 import com.versec.domain.repository.UserRepository
-import com.versec.domain.usecases.InsertUserUseCase
-import com.versec.domain.usecases.GetUserUseCase
-import com.versec.versecko.data.entity.UserEntity
-import com.versec.versecko.data.room.AppDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class UserViewModel(
+class UserViewModel (
+    //var getUserUseCase: GetUserUseCase ,
+    //var insertUserUseCase: InsertUserUseCase
 
+    private val userRepository : UserRepository
 
-
-) : ViewModel()
+): ViewModel()
 {
-    //lateinit var getUserUseCase: GetUserUseCase
-    //lateinit var insertUserUseCase: InsertUserUseCase
-    lateinit var userRepository: UserRepository
 
 
-    val _user : LiveData<List<UserModel>> = liveData {
+
+    val _user : LiveData<MutableList<UserModel>> = liveData {
 
         val data = userRepository.getAllUser()
+
+        Log.d("room-db-livedata", "livedata: "+ data.size)
 
         emit(data)
         //val data = getUserUseCase.invoke()
@@ -41,6 +39,8 @@ class UserViewModel(
     fun insertUser (userModel: UserModel) {
         viewModelScope.launch(Dispatchers.IO) {
             //insertUserUseCase.invoke(userModel)
+
+            Log.d("room-db-livedata", "insert : livedata")
 
             userRepository.insertUser(userModel)
         }

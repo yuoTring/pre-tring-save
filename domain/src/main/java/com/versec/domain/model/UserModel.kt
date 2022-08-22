@@ -9,11 +9,11 @@ data class UserModel(
 
     var mainResidence : String = "Seoul",
     var subResidence : String = "???",
-    var tripWish : List<String> = listOf("Busan","Daegu"),
-    var tripStyle : List<String> = listOf("just date"),
+    var tripWish : MutableList<String> = mutableListOf("!!!","!!?"),
+    var tripStyle : MutableList<String> = mutableListOf("!!!","!!?"),
     var selfIntroduction : String = "hi -_-",
 
-    var uriList : List<String> = listOf("not yet ready"),
+    var uriList : MutableList<String> = mutableListOf("!!!","!!?"),
     var geohash : String = "none",
     var latitude : Double = 37.455,
     var longitude : Double = 124.890,
